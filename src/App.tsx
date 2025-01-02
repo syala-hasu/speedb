@@ -12,9 +12,7 @@ const router = createBrowserRouter([
 function App() {
   return (
       <>
-          <div className={`container mx-auto`}>
-              <RouterProvider router={router} />
-          </div>
+          <RouterProvider router={router} />
       </>
   )
 }
