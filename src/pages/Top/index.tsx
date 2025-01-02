@@ -1,5 +1,5 @@
-import IntroductionList from "../../features/Introduction/components/IntroductionList";
-import {useFetchIntroductionList} from "../../features/Introduction/hooks/useFetchIntroductionList.ts";
+import IntroductionList from "../../features/introduction/components/IntroductionList";
+import {useFetchIntroductionList} from "../../features/introduction/hooks/useFetchIntroductionList.ts";
 
 function Top() {
     const {introductionList, isLoading} = useFetchIntroductionList()

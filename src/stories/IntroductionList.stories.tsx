@@ -1,9 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import IntroductionList from "../features/Introduction/components/IntroductionList";
+import IntroductionList from "../features/introduction/components/IntroductionList";
 
 
 const meta = {
-    title: 'Introduction/IntroductionList',
+    title: 'introduction/IntroductionList',
     component: IntroductionList,
     tags: ['autodocs'],
     parameters: {
@@ -20,21 +20,25 @@ export const Default: Story = {
     args: {
         introductionList: [
             {
+                id: 'example1',
                 img: 'https://www.speedrun.com/static/game/pdv27nv6/cover.png',
                 title: 'Test Game',
                 description: 'Test Game Description'
             },
             {
+                id: 'example2',
                 img: 'https://www.speedrun.com/static/game/pdv27nv6/cover.png',
                 title: 'Test Game',
                 description: 'Test Game Description'
             },
             {
+                id: 'example3',
                 img: 'https://www.speedrun.com/static/game/pdv27nv6/cover.png',
                 title: 'Test Game',
                 description: 'Test Game Description'
             },
             {
+                id: 'example4',
                 img: 'https://www.speedrun.com/static/game/pdv27nv6/cover.png',
                 title: 'Test Game',
                 description: 'Test Game Description'
