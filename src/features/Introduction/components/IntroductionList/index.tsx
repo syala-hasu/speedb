@@ -11,17 +11,17 @@ export interface Props {
 
 function IntroductionList(props: Props): React.ReactElement {
 
-    if (props.isLoading) return <Loading />
+    if (props.isLoading || props.introductionList.length == 0) return <Loading />
 
     const introductionList = props.introductionList.map(
         (introduction) =>
-            <li>
+            <li className={``}>
                 <IntroductionItem {...introduction} />
             </li>
     )
     return (
         <>
-            <ul className={`grid grid-cols-4`}>
+            <ul className={`grid grid-cols-3 gap-4`}>
                 {introductionList}
             </ul>
         </>
