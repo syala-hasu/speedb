@@ -1,11 +1,13 @@
-import styles from './index.module.css'
-import IntroductionList from "../../components/Top/IntroductionList";
+import IntroductionList from "../../features/Introduction/components/IntroductionList";
+import {useFetchIntroductionList} from "../../features/Introduction/hooks/Introduction/useFetchIntroductionList.ts";
 
 function Top() {
+    const {introductionList, isLoading} = useFetchIntroductionList()
+
     return (
         <>
             <div className={``}>
-                <IntroductionList></IntroductionList>
+                <IntroductionList introductionList={introductionList} isLoading={isLoading}></IntroductionList>
             </div>
         </>
     )
