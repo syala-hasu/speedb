@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
-import {Introduction} from "../../../../entities/Introduction.ts";
+import {Introduction} from "../../../entities/Introduction.ts";
+import client from "../../../libs/axios/client.ts";
+import {IntroductionMockResponse} from "./mocks/fetchIntroductionList.ts";
 
 export const useFetchIntroductionList: () => {
     isLoading: boolean;
@@ -12,17 +14,10 @@ export const useFetchIntroductionList: () => {
 
     useEffect(() => {
         (async() => {
-            try {
-                const response = await fetch("/example");
-                const data = await response.json();
-                setIntroductionList(data);
-            } catch(err) {
-                // TODO: DEBUG
-                console.error(err)
-                setError(true);
-            } finally {
-                setLoading(false);
-            }
+            await client.get('/introduction', IntroductionMockResponse)
+                .then((response) => setIntroductionList(response.data))
+                .catch(() => setError(true))
+                .finally(() => setLoading(false));
         })()
     }, []);
 
