@@ -1,13 +1,13 @@
-import IntroductionList from "../../features/introduction/components/IntroductionList";
-import {useFetchIntroductionList} from "../../features/introduction/hooks/useFetchIntroductionList.ts";
+import GameList from "../../features/game/components/GameList";
+import {useFetchGameList} from "../../features/game/hooks/useFetchGameList.ts";
 
 function Top() {
-    const {introductionList, isLoading} = useFetchIntroductionList()
+    const {gameList, isLoading} = useFetchGameList()
 
     return (
         <>
             <div className={`container mx-auto`}>
-                <IntroductionList introductionList={introductionList} isLoading={isLoading}></IntroductionList>
+                <GameList gameList={gameList} isLoading={isLoading}></GameList>
             </div>
         </>
     )
