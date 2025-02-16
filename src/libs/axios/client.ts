@@ -20,4 +20,9 @@ const get = (endpoint: string, mockConfig?: MockConfig) => {
     return axiosClient.get(endpoint);
 }
 
+export const fetcher = (url: string) => {
+    return axios.get(import.meta.env.VITE_API_HOST + url).then(res => res.data)
+}
+
+
 export default {get}

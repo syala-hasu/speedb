@@ -1,0 +1,6 @@
+mutation InsertGame($name: String, $uid: String) {
+    insert_games_one(object: {name: $name, uid: $uid}) {
+        name
+        uid
+    }
+}

@@ -1,25 +1,22 @@
-import { useEffect, useState } from "react";
 import {Game} from "../../../entities/Game.ts";
-import client from "../../../libs/axios/client.ts";
-import {GameMockResponse} from "./mocks/fetchGameList.ts";
+import {fetcher} from "../../../libs/axios/client.ts";
+import useSWR from "swr";
 
-export const useFetchGameList: () => {
+
+export const useFetchGameList: (page?: number, size?: number) => {
     gameList: Game[];
     isLoading: boolean;
-    isError: boolean
-} = () => {
-    const [gameList, setGameList] = useState<Game[]>([]);
-    const [isLoading, setLoading] = useState(true);
-    const [isError, setError] = useState(false);
+    error: boolean;
+} = (page?: number, size?: number) => {
 
-    useEffect(() => {
-        (async() => {
-            await client.get('/game', GameMockResponse)
-                .then((response) => setGameList(response.data))
-                .catch(() => setError(true))
-                .finally(() => setLoading(false));
-        })()
-    }, []);
+    if (page) {
+        page = 1
+    }
 
-    return { gameList, isLoading, isError };
-};
+    if (size) {
+        size = 20
+    }
+
+    const { data, error, isLoading } = useSWR(`/game?p=${page}&s=${size}`, fetcher)
+    return { gameList: data, isLoading, error };
+}

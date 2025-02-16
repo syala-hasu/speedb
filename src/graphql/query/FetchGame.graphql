@@ -1,0 +1,6 @@
+query GetGame($uid: String) {
+    games(where: {uid: {_eq: $uid}}) {
+        uid
+        name
+    }
+}

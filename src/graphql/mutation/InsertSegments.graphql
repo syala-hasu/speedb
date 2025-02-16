@@ -1,0 +1,12 @@
+mutation InsertSegments($segments: [segments_insert_input!]!) {
+    insert_segments(objects: $segments) {
+        returning {
+            index
+            best_time
+            current_time
+            name
+            run_uid
+            uid
+        }
+    }
+}

@@ -1,0 +1,10 @@
+mutation InsertRun($attempt_count: Int, $game_uid: String, $uid: String) {
+    insert_runs(objects: {attempt_count: $attempt_count, game_uid: $game_uid, uid: $uid}) {
+        affected_rows
+        returning {
+            attempt_count
+            game_uid
+            uid
+        }
+    }
+}

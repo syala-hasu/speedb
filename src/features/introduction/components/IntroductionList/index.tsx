@@ -1,7 +1,7 @@
 import IntroductionItem from "../IntroductionItem";
 import React from "react";
 import {Introduction} from "../../../../entities/Introduction.ts";
-import Loading from "../../../common/Loading";
+import Loading from "../../../common/components/Loading";
 
 
 export interface Props {
@@ -11,19 +11,45 @@ export interface Props {
 
 function IntroductionList(props: Props): React.ReactElement {
 
-    if (props.isLoading || props.introductionList.length == 0) return <Loading />
+    if (props.isLoading) return <Loading />
+
+    if (!props.introductionList) return <Loading />;
 
     const introductionList = props.introductionList.map(
         (introduction) =>
-            <li className={``}>
-                <IntroductionItem {...introduction} />
-            </li>
+            <tr>
+                <IntroductionItem introduction={introduction} />
+            </tr>
     )
     return (
         <>
-            <ul className={`grid grid-cols-3 gap-4`}>
-                {introductionList}
-            </ul>
+            <div className="overflow-x-auto">
+                <table className="table table-xs">
+                    <thead>
+                    <tr>
+                        <th>Player</th>
+                        <th>Event</th>
+                        <th>Date</th>
+                        <th>Category</th>
+                        <th>EST</th>
+                        <th>Description</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {introductionList}
+                    </tbody>
+                    <tfoot>
+                    <tr>
+                        <th>Player</th>
+                        <th>Event</th>
+                        <th>Date</th>
+                        <th>Category</th>
+                        <th>EST</th>
+                        <th>Description</th>
+                    </tr>
+                    </tfoot>
+                </table>
+            </div>
         </>
     )
 }

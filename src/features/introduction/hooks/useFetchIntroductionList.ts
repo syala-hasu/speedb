@@ -1,25 +1,12 @@
-import { useEffect, useState } from "react";
 import {Introduction} from "../../../entities/Introduction.ts";
-import client from "../../../libs/axios/client.ts";
-import {IntroductionMockResponse} from "./mocks/fetchIntroductionList.ts";
+import {fetcher} from "../../../libs/axios/client.ts";
+import useSWR from "swr";
 
-export const useFetchIntroductionList: () => {
-    isLoading: boolean;
+export const useFetchIntroductionList: (id: string) => {
     introductionList: Introduction[];
-    isError: boolean
-} = () => {
-    const [introductionList, setIntroductionList] = useState<Introduction[]>([]);
-    const [isLoading, setLoading] = useState(true);
-    const [isError, setError] = useState(false);
-
-    useEffect(() => {
-        (async() => {
-            await client.get('/introduction', IntroductionMockResponse)
-                .then((response) => setIntroductionList(response.data))
-                .catch(() => setError(true))
-                .finally(() => setLoading(false));
-        })()
-    }, []);
-
-    return { introductionList, isLoading, isError };
-};
+    error: boolean
+    isLoading: boolean;
+} = (id: string) => {
+    const { data, error, isLoading } = useSWR(`/game/${id}/introduction`, fetcher)
+    return { introductionList: data, isLoading, error };
+}

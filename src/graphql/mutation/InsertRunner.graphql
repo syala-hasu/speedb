@@ -1,0 +1,6 @@
+mutation InsertRunner($userId: String, $uid: String) {
+    insert_runners_one(object: {user_uid: $userId, uid: $uid}) {
+        uid
+        user_uid
+    }
+}

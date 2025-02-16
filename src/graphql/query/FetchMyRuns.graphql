@@ -1,0 +1,8 @@
+query FetchRunsByRunner($runner_uid: String) {
+    runs(where: {runner_uid: {_eq: $runner_uid}}) {
+        attempt_count
+        game_uid
+        runner_uid
+        uid
+    }
+}

@@ -1,0 +1,6 @@
+query FetchRunnerByUserId($userId: String) {
+    runners(where: {user_uid: {_eq: $userId}}) {
+        name
+        uid
+    }
+}
